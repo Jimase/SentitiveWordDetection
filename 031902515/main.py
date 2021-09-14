@@ -88,7 +88,7 @@ class DFAFilter(object):
         self.parse(senstive_path)
         self.result_path = result_path
         self.total = 0
-        self.rp = open(self.result_path, "w", encoding="utf-8")
+        self.rp = open(self.result_path, "w", encoding="utf-8"  )
 
     # 向关键词字典中插入关键字
     def add(self, keyword, rawkeyword):
@@ -249,3 +249,4 @@ if __name__ == '__main__':
         exit(-1)
     args = sys.argv
     main(args[1], args[2], args[3])
+    # python main.py ./data/words.txt ./data/org.txt ans.txt
