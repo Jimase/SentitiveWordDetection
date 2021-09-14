@@ -88,7 +88,7 @@ class DFAFilter(object):
         self.parse(senstive_path)
         self.result_path = result_path
         self.total = 0
-        self.rp = open(self.result_path, "w")
+        self.rp = open(self.result_path, "w", encoding="utf-8")
 
     # 向关键词字典中插入关键字
     def add(self, keyword, rawkeyword):
