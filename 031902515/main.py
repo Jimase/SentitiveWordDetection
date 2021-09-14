@@ -226,8 +226,13 @@ class DFAFilter(object):
             start += 1
 
     def __del__(self):
-        self.rp.write(str(self.total))
+        # self.rp.write("Total:"+str(self.total))
         self.rp.close()
+        with open(self.result_path, 'r+',encoding="utf-8") as f:
+            content = f.read()
+            f.seek(0, 0)
+            f.write("Total:"+str(self.total)+"\n"+ content)
+        f.close()
 
 def main(word_path, file_path, result_path):
     # 关键词文件路径

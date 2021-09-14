@@ -1,3 +1,4 @@
+Total:519
 Line2: <邪教> 邪教
 Line3: <法轮功> 法lun功
 Line8: <fuck> Fuck
@@ -517,4 +518,3 @@ Line472: <法轮功> 法lun功
 Line473: <法轮功> 法lun功
 Line474: <法轮功> 法lun功
 Line475: <邪教> 邪{}|:">?"$#@}教
-519
