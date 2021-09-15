@@ -64,7 +64,7 @@ def fun4():
     xieyin = []
     ## 2个候选
     for item in x:
-        result = viterbi(hmm_params=hmmparams, observations=(item))
+        result = viterbi(hmm_params=hmmparams, observations=(item), path_num=15)
         xieyin.append([item2.path[0] for item2 in result])
         for item2 in result:
             print(item2.path)

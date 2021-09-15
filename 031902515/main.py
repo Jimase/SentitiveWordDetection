@@ -88,7 +88,8 @@ class DFAFilter(object):
         self.parse(senstive_path)
         self.result_path = result_path
         self.total = 0
-        self.rp = open(self.result_path, "w", encoding="utf-8"  )
+        self.rp = open(self.result_path, "w", encoding="utf-8")
+        self.filestr = ""
 
     # 向关键词字典中插入关键字
     def add(self, keyword, rawkeyword):
@@ -120,6 +121,7 @@ class DFAFilter(object):
                     # 构建拼音敏感字
                     x = pinyin(ckeyword, style=Style.NORMAL)
                     pkeyword = [item[0] for item in x]
+                    print("pkeyword", pkeyword)
                     ans = []
                     get_permutation(ckeyword, pkeyword, 0, ans, [])
                     for ansitem in ans:
@@ -139,19 +141,36 @@ class DFAFilter(object):
                         # print(item)
                         self.add(item, ckeyword)
 
+                    # 首字母拼音和全拼音组合
+                    ans = []
+                    get_fpyzu(fpy, pkeyword, 0, ans, "")
+                    for item in ans:
+                        self.add(item, ckeyword)
+
                     # 构建谐音敏感字
                     # 首先得到文字的拼音
                     py =  pinyin(ckeyword, style=Style.NORMAL)
                     hmmparams = DefaultHmmParams()
                     xieyin = []
                     for item in py:
-                        result = viterbi(hmm_params=hmmparams, observations=(item))
+                        result = viterbi(hmm_params=hmmparams, observations=(item), path_num=15)
                         xieyin.append([item2.path[0] for item2 in result])
                     xieyinzuhe = []
                     get_xieyinzuhe(xieyin, 0, xieyinzuhe, "")
                     for item in xieyinzuhe:
-                        print(item)
+                        # print(item)
                         self.add(item, ckeyword)
+
+                    # # 得到谐音加拼音敏感字
+                    # for item in xieyinzuhe:
+                    #     ans = []
+                    #     get_fpyzu(item, fpy, 0, ans, "")
+                    #     # print(ans)
+                    #     for item2 in ans:
+                    #         if item2 == "法伦g":
+                    #             print("YYYYYYY")
+                    #             print(ans)
+                    #         self.add(item2, ckeyword)
 
                     # 构建部首敏感字
                     hc = HanziChaizi()
@@ -220,19 +239,16 @@ class DFAFilter(object):
                 else: break
             if ok:
                 anstr = "Line{}: <{}> {}\n".format(linenumber, sensitive_word, rawmessage[left: right + 1])
+                self.filestr += anstr
                 print(anstr, end="")
-                self.rp.write(anstr)
+                # self.rp.write(anstr)
                 self.total += 1
             start += 1
 
     def __del__(self):
-        # self.rp.write("Total:"+str(self.total))
+        self.rp.write("Total: " + str(self.total) + '\n')
+        self.rp.write(self.filestr)
         self.rp.close()
-        with open(self.result_path, 'r+',encoding="utf-8") as f:
-            content = f.read()
-            f.seek(0, 0)
-            f.write("Total:"+str(self.total)+"\n"+ content)
-        f.close()
 
 def main(word_path, file_path, result_path):
     # 关键词文件路径
@@ -254,4 +270,3 @@ if __name__ == '__main__':
         exit(-1)
     args = sys.argv
     main(args[1], args[2], args[3])
-    # python main.py ./data/words.txt ./data/org.txt ans.txt
