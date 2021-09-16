@@ -105,12 +105,17 @@ class DFAFilter(object):
             else:
                 if not isinstance(level, dict):
                     break
+
                 for j in range(i, len(chars)):
                     level[chars[j]] = {}
                     last_level, last_char = level, chars[j]
                     level = level[chars[j]]
                 last_level[last_char] = {self.delimit: rawkeyword}
-                break
+                # break
+                return
+        if i == len(chars) - 1:
+            level[self.delimit] = chars
+        # level = {self.delimit: rawkeyword}
 
     # 构建关键词字典
     def parse(self, path):
@@ -121,7 +126,7 @@ class DFAFilter(object):
                     # 构建拼音敏感字
                     x = pinyin(ckeyword, style=Style.NORMAL)
                     pkeyword = [item[0] for item in x]
-                    print("pkeyword", pkeyword)
+                    # print("pkeyword", pkeyword)
                     ans = []
                     get_permutation(ckeyword, pkeyword, 0, ans, [])
                     for ansitem in ans:
@@ -191,7 +196,7 @@ class DFAFilter(object):
                         self.add(item, ckeyword)
                 else:
                     self.add(ckeyword, ckeyword)
-            print(self.keyword_chains)
+            # print(self.keyword_chains)
 
     # 根据关键字字典过滤出输入字符串message中的敏感词
     def filter(self, message, linenumber):
