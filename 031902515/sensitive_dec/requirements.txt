@@ -1,0 +1,2 @@
+pypinyin~=0.42.0
+pinyin2hanzi~=0.1.1

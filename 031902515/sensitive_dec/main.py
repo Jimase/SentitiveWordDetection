@@ -3,7 +3,8 @@ from pypinyin import pinyin, Style
 # from hanzi_chaizi.hanzi_chaizi import HanziChaizi
 from hanzi_chaizi import HanziChaizi
 from langconv import Converter
-# from Pinyin2Hanzi.Pinyin2Hanzi import DefaultHmmParams
+# from Pinyin2Hanzi.Pinyin2Hanzi import DefaultHmm
+# Params
 from Pinyin2Hanzi import DefaultHmmParams, viterbi
 # from Pinyin2Hanzi.Pinyin2Hanzi import viterbi
 
