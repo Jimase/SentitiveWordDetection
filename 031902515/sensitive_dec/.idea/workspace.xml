@@ -25,7 +25,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/深度学习/YOWO" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -36,7 +36,7 @@
       <recent name="D:\core\接单\敏感词检测\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.jt5">
     <configuration name="j1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="敏感词检测" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -149,8 +149,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.jt5" />
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.mian" />
         <item itemvalue="Python.j2" />
         <item itemvalue="Python.j1" />
@@ -168,13 +168,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1631095958390</updated>
-      <workItem from="1633620805535" duration="17000" />
-      <workItem from="1633620829455" duration="26000" />
-      <workItem from="1633620893908" duration="112000" />
-      <workItem from="1633621266110" duration="95000" />
-      <workItem from="1633621380740" duration="16000" />
-      <workItem from="1633621404571" duration="48000" />
-      <workItem from="1633693885837" duration="35000" />
+      <workItem from="1633703456571" duration="169000" />
+      <workItem from="1633703636535" duration="186000" />
     </task>
     <servers />
   </component>

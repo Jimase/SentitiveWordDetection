@@ -157,11 +157,16 @@ class DFAFilter(object):
                     # 构建谐音敏感字
                     # 首先得到文字的拼音
                     py =  pinyin(ckeyword, style=Style.NORMAL)
+                    # print('py: ', py)
                     hmmparams = DefaultHmmParams()
                     xieyin = []
                     for item in py:
-                        result = viterbi(hmm_params=hmmparams, observations=(item), path_num=15)
-                        xieyin.append([item2.path[0] for item2 in result])
+                        try:
+                            result = viterbi(hmm_params=hmmparams, observations=(item), path_num=15)
+                            xieyin.append([item2.path[0] for item2 in result])
+                        except:
+                            continue
+                    # print(xieyin)
                     xieyinzuhe = []
                     get_xieyinzuhe(xieyin, 0, xieyinzuhe, "")
                     for item in xieyinzuhe:
@@ -263,6 +268,7 @@ def main(word_path, file_path, result_path):
     dfa = DFAFilter(word_path, result_path)
     # 待解析文本路径
     # article_path = "./data/org.txt"
+    print('----------------------------------------')
     with open(file_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
         for index in range(len(lines)):

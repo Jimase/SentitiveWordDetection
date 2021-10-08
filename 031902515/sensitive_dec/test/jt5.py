@@ -9,8 +9,8 @@
 
 from langconv import Converter
 from pypinyin import pinyin, Style
-from Pinyin2Hanzi.Pinyin2Hanzi import DefaultHmmParams
-from Pinyin2Hanzi.Pinyin2Hanzi import viterbi
+from Pinyin2Hanzi import DefaultHmmParams
+from Pinyin2Hanzi import viterbi
 
 def cat_to_chs(sentence):  # 传入参数为列表
     """
@@ -57,17 +57,20 @@ def fun3():
     print(fans)
 
 def fun4():
-    cstr = "法轮功"
+    cstr = "血国"
     x = pinyin(cstr, style=Style.NORMAL)
     print(x)
     hmmparams = DefaultHmmParams()
     xieyin = []
     ## 2个候选
     for item in x:
-        result = viterbi(hmm_params=hmmparams, observations=(item), path_num=15)
-        xieyin.append([item2.path[0] for item2 in result])
-        for item2 in result:
-            print(item2.path)
+        try:
+            result = viterbi(hmm_params=hmmparams, observations=(item), path_num=5)
+            xieyin.append([item2.path[0] for item2 in result])
+        except:
+            continue
+        # for item2 in result:
+        #     print(item2.path)
     print(xieyin)
     # print(xieyin.shape)
 
