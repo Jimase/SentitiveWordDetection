@@ -3,8 +3,7 @@ from pypinyin import pinyin, Style
 # from hanzi_chaizi.hanzi_chaizi import HanziChaizi
 from hanzi_chaizi import HanziChaizi
 from langconv import Converter
-# from Pinyin2Hanzi.Pinyin2Hanzi import DefaultHmm
-# Params
+# from Pinyin2Hanzi.Pinyin2Hanzi import DefaultHmmParams
 from Pinyin2Hanzi import DefaultHmmParams, viterbi
 # from Pinyin2Hanzi.Pinyin2Hanzi import viterbi
 
@@ -161,11 +160,12 @@ class DFAFilter(object):
                     # print('py: ', py)
                     hmmparams = DefaultHmmParams()
                     xieyin = []
-                    for item in py:
+                    for i, item in enumerate(py):
                         try:
                             result = viterbi(hmm_params=hmmparams, observations=(item), path_num=15)
                             xieyin.append([item2.path[0] for item2 in result])
                         except:
+                            xieyin.append(ckeyword[i])
                             continue
                     # print(xieyin)
                     xieyinzuhe = []
